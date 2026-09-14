@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صيدلية ومركز نايا</title>
+    <style>
+        body { 
+            background: #f4efe6; 
+            font-family: Tahoma, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            color: #333; 
+        }
+        .card { 
+            background: #fff; 
+            padding: 30px 25px; 
+            border-radius: 16px; 
+            width: 100%; 
+            max-width: 400px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            border: 2px solid #d4af37; 
+            box-sizing: border-box; 
+        }
+        h2 { 
+            text-align: center; 
+            color: #4a403a; 
+            margin-bottom: 25px; 
+            font-size: 22px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #5c5048;
+            font-size: 14px;
+        }
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 20px; 
+            border: 1px solid #dcd1c1; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-size: 14px;
+            background: #faf8f5;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: #d4af37;
+        }
+        button { 
+            width: 100%; 
+            background: #d4af37; 
+            color: #fff; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 16px; 
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #c29f30;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>صيدلية ومركز نايا</h2>
+        <form onsubmit="sendToWhatsApp(event)">
+            <div>
+                <label for="name">الاسم الكامل</label>
+                <input type="text" id="name" placeholder="أدخل اسمك الكريم" required>
+            </div>
+            <div>
+                <label for="phone">رقم الهاتف</label>
+                <input type="tel" id="phone" placeholder="أدخل رقم هاتفك" required>
+            </div>
+            <div>
+                <label for="service">اختر الخدمة</label>
+                <select id="service" required>
+                    <option value="" disabled selected>-- اضغط لاختيار الخدمة --</option>
+                    <option value="استشارة صيدلانية">استشارة صيدلانية</option>
+                    <option value="جلسة عناية بالبشرة">جلسة عناية بالبشرة</option>
+                </select>
+            </div>
+            <button type="submit">حجز عبر واتساب</button>
+        </form>
+    </div>
+    <script>
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const n = document.getElementById('name').value;
+            const p = document.getElementById('phone').value;
+            const s = document.getElementById('service').value;
+            const url = `https://wa.me/963996465777?text=${encodeURIComponent('مرحباً، أرغب بحجز موعد:\nالاسم: ' + n + '\nالهاتف: ' + p + '\nالخدمة: ' + s)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
